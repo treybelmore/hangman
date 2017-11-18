@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title> Hangman Game</title>
+	
+	<link rel="stylesheet" href="reset.css">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+	<!--create HTML output-->
+	<div class="container">
+		<div class="output">
+			<h1>HANGMAN GAME</h1>
+			<br>
+			<div id="mascot">Category: MASCOTS!</div>
+			<br>
+			<p id="chosenword"></p>
+			<br>
+			<div class="score">
+			<p id="guessed">Guessed Letters: </p>
+			<br>
+			<p id="guessesRemaining"> Remaining Guesses: </p>
+			<br>
+			<p id="wins">Wins: </p>
+			<p id="losses">Losses: </p>
+		</div>
+		</div>
+	</div>
+
+	<!--start scripting-->
+<script>
+	// define variables
+	var computerChoices = ["oriols", "sooners", "rangers", "spartans", "seahawks", "cowboys", "magic", "vikings", "bluejays", "heat", "tarheels"];
+	var wins = 0;
+	var losses = 0;
+	var guessesRemaining = 10;
+	var guessedSoFar = [];
+	var chosenWord = [];
+
+	
+	//create random word from array
+	function randomword() {
+	computerGuess = computerChoices[Math.floor(computerChoices.length * Math.random())];
+		for (i=0; i < computerGuess.length; i++) {chosenWord.push("_");
+		console.log(computerGuess)
+		}
+	
+
+	document.querySelector("#chosenword").innerHTML = chosenWord;
+	}
+
+	//reset 
+	function reset() {
+		guessesRemaining = 10;
+		guessedSoFar = [];
+		chosenWord = [];
+		document.querySelector("#guessesRemaining").innerHTML = "Guesses Remaining: " + guessesRemaining;
+		document.querySelector("#guessed").innerHTML = "Letters Guessed so far: " + guessedSoFar;
+	}
+
+
+	randomword();
+
+		
+
+	function guessedLetters() {
+		document.querySelector("#guessed").innerHTML = "Letters Guessed so far: " + guessedSoFar;
+	};
+
+
+	
+
+	document.onkeyup = function (event) {
+		var UserGuess = event.key.toLowerCase();
+		
+		var checkused = guessedSoFar.indexOf (UserGuess);
+
+			
+
+		document.querySelector("#guessed").innerHTML = "Letters Guessed so far: " + guessedSoFar + ', ';
+		
+		
+		if (checkused == -1) {
+			guessesRemaining--;
+			document.querySelector("#guessesRemaining").innerHTML = "Guesses Remaining: " + guessesRemaining;
+			guessedSoFar.push(UserGuess);
+			
+
+			if (guessesRemaining > 0){
+
+				
+				for (i=0; i < computerGuess.length; i++) {
+					if (UserGuess == computerGuess[i]){
+						
+						chosenWord.splice(i, 1, UserGuess)
+
+						document.querySelector("#chosenword").innerHTML = chosenWord;
+					}
+				
+
+				var gamewon = chosenWord.indexOf("_");
+					if (gamewon == -1){
+						wins++;
+						document.querySelector("#wins").innerHTML = "Wins: " + wins;
+						alert("You Win! The mascot is " + computerGuess + "!");
+						reset();
+						randomword();
+					}
+				}	
+			}
+		
+			else {
+				losses++;
+				document.querySelector("#losses").innerHTML = "Losses: " + losses;
+				alert ("You Lose! The mascot we were looking for is " + computerGuess + "!");
+				reset();
+				randomword();
+			}
+		}
+		guessedLetters();
+
+	};
+
+
+</script>

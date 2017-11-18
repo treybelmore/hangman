@@ -1,0 +1,40 @@
+.container {
+	text-align: center;
+	font-family: fantasy;
+	color: #ffff00;
+
+}
+
+body {
+    background-image: url("https://www.walldevil.com/wallpapers/a76/backgrounds-desktop-wallpaper-venues-architecture-images-sports.jpg");
+    background-color: #cccccc;
+    text-shadow: 1px 1px #999966;
+
+}
+
+h1 {
+	font-size: 80px;
+	font-style: bold;
+	text-shadow: 4px 4px black;
+}
+
+
+#mascot {
+	font-size: 40px;
+	font-style: bold;
+}
+
+#chosenword {
+	font-size: 80px;
+	height: 200px;
+	width: 50%;
+	border: 4px dashed #999966;
+	margin: auto;
+	padding-top: 30px;
+	background-color: white;
+	color: black;
+}
+
+.score {
+	font-size: 30px;
+}
